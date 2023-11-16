@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 14:50:10 by jtollena          #+#    #+#             */
-/*   Updated: 2023/11/16 15:48:42 by jtollena         ###   ########.fr       */
+/*   Created: 2023/10/16 11:09:22 by jtollena          #+#    #+#             */
+/*   Updated: 2023/10/23 13:12:32 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include <string.h>
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
+{
+	char	*str;
+	int		i;
 
-int	ft_printf(const char *, ...);
-size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s);
-
-#endif
+	if (!s || !f)
+		return (NULL);
+	str = malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i] != 0)
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	str[i] = 0;
+	return (str);
+}

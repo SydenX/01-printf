@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 14:50:10 by jtollena          #+#    #+#             */
-/*   Updated: 2023/11/16 15:48:42 by jtollena         ###   ########.fr       */
+/*   Created: 2023/10/16 16:08:05 by jtollena          #+#    #+#             */
+/*   Updated: 2023/10/23 13:14:39 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include <string.h>
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*cpy;
+	t_list	*lastcpy;
 
-int	ft_printf(const char *, ...);
-size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s);
-
-#endif
+	if (!del || !lst)
+		return ;
+	if (!*lst)
+		return ;
+	cpy = *lst;
+	while (cpy)
+	{
+		del(cpy->content);
+		lastcpy = cpy->next;
+		free(cpy);
+		cpy = lastcpy;
+	}
+	*lst = NULL;
+}

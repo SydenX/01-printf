@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 14:50:10 by jtollena          #+#    #+#             */
-/*   Updated: 2023/11/16 15:48:42 by jtollena         ###   ########.fr       */
+/*   Created: 2023/10/15 21:42:29 by jtollena          #+#    #+#             */
+/*   Updated: 2023/11/16 15:41:18 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include <string.h>
+char	*ft_strdup(const char *s)
+{
+	char	*copy;
+	int		i;
 
-int	ft_printf(const char *, ...);
-size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s);
-
-#endif
+	if (!s)
+		return (NULL);
+	copy = malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (copy == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i] != 0)
+	{
+		copy[i] = s[i];
+		i++;
+	}
+	copy[i] = 0;
+	return (copy);
+}

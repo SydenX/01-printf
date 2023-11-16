@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 14:50:10 by jtollena          #+#    #+#             */
-/*   Updated: 2023/11/16 15:48:42 by jtollena         ###   ########.fr       */
+/*   Created: 2023/10/16 16:07:49 by jtollena          #+#    #+#             */
+/*   Updated: 2023/10/23 13:48:14 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include <string.h>
+void	ft_lstadd_back(t_list **list, t_list *new)
+{
+	t_list	*cpy;
 
-int	ft_printf(const char *, ...);
-size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s);
-
-#endif
+	if (*list == NULL)
+	{
+		*list = new;
+		return ;
+	}
+	cpy = *list;
+	while (cpy->next)
+	{
+		cpy = cpy->next;
+	}
+	cpy->next = new;
+}

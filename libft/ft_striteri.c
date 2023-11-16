@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 14:50:10 by jtollena          #+#    #+#             */
-/*   Updated: 2023/11/16 15:48:42 by jtollena         ###   ########.fr       */
+/*   Created: 2023/10/16 11:09:15 by jtollena          #+#    #+#             */
+/*   Updated: 2023/10/23 12:54:06 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include <string.h>
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+{
+	int	i;
 
-int	ft_printf(const char *, ...);
-size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s);
-
-#endif
+	if (!s || !f)
+		return ;
+	i = 0;
+	while (s[i] != 0)
+	{
+		f(i, &s[i]);
+		i++;
+	}
+}

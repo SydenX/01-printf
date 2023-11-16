@@ -6,7 +6,7 @@
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:51:36 by jtollena          #+#    #+#             */
-/*   Updated: 2023/11/16 15:35:06 by jtollena         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:50:01 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	ft_printf(const char *type, ...)
 	return (i);
 }
 
+//Pour compiler durant les tests;
+//  gcc main.c helper.c -L. -lft
 int	main(int argc, char **argv)
 {
 	char *s = "salut";

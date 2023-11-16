@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 14:50:10 by jtollena          #+#    #+#             */
-/*   Updated: 2023/11/16 15:48:42 by jtollena         ###   ########.fr       */
+/*   Created: 2023/10/15 21:42:36 by jtollena          #+#    #+#             */
+/*   Updated: 2023/10/23 13:10:56 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include <string.h>
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+{
+	int	i;
+	int	dstln;
 
-int	ft_printf(const char *, ...);
-size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s);
-
-#endif
+	if (!dst && !src)
+		return (0);
+	dstln = 0;
+	while (dst[dstln] != 0 && dstsize > (size_t)dstln)
+		dstln++;
+	i = 0;
+	while ((size_t)(i + dstln + 1) < dstsize && src[i] != 0)
+	{
+		dst[dstln + i] = src[i];
+		i++;
+	}
+	if (i > 0)
+		dst[dstln + i] = 0;
+	return (dstln + ft_strlen(src));
+}
