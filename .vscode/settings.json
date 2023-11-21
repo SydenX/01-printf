@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"stdio.h": "c",
-		"printf.h": "c"
+		"printf.h": "c",
+		"iterator": "c"
 	}
 }

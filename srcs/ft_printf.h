@@ -6,7 +6,7 @@
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:10:15 by jtollena          #+#    #+#             */
-/*   Updated: 2023/11/21 16:05:24 by jtollena         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:11:26 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <unistd.h>
 # include <string.h>
 
+# define MY_INT_MAX 2147483647
+# define MY_LONG_MAX 9223372036854775807
+
 int		ft_printf(const char *type, ...);
 size_t	ft_strlen(const char *s);
 int		ft_putstr(int current, char *s);
@@ -26,5 +29,6 @@ int		ft_putchar(int current, char c);
 int		ft_putnbr_base(int current, size_t nbr, int maj);
 char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *s);
+int	ft_atoi(const char *str);
 
 #endif
