@@ -6,19 +6,25 @@
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 11:08:30 by jtollena          #+#    #+#             */
-/*   Updated: 2023/10/23 12:50:44 by jtollena         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:28:02 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_putstr_fd(char *s, int fd)
 {
+	int	len;
+
+	len = 0;
 	if (!s)
-		return ;
+		return ft_putstr_fd("(null)", fd);
 	while (*s != 0)
 	{
-		ft_putchar_fd(*s, fd);
+		len += ft_putchar_fd(*s, fd);
+		if (len == -1)
+			return (-1);
 		s++;
 	}
+	return (len);
 }

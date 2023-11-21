@@ -6,12 +6,11 @@
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:51:36 by jtollena          #+#    #+#             */
-/*   Updated: 2023/11/21 16:03:12 by jtollena         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:09:57 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/printf.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
 int	ft_putnbr(int current, int n)
 {

@@ -6,11 +6,11 @@
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:33:51 by jtollena          #+#    #+#             */
-/*   Updated: 2023/11/21 16:06:20 by jtollena         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:10:28 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/printf.h"
+#include "ft_printf.h"
 
 size_t	ft_strlen(const char *s)
 {
