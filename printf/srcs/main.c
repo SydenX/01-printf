@@ -6,7 +6,7 @@
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:51:36 by jtollena          #+#    #+#             */
-/*   Updated: 2023/11/21 17:38:31 by jtollena         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:54:47 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,10 @@ int	ft_isflag(char c, char *nexts)
 		return (2);
 	else if (c == '-')
 		return (1);
+	if (c == '0' && (nexts[0] >= '0' && nexts[0] <= '9'))
+		return (3);
+	else if (c == '0')
+		return (1);
 	return (0);
 }
 
@@ -144,7 +148,9 @@ int	ft_printf(const char *type, ...)
 	long	pln;
 	char	flag;
 	int		j;
+	int		flagid;
 
+	flagid = 0;
 	pln = 0;
 	tmptype = (char *)type;
 	va_start(args, type);
@@ -156,8 +162,9 @@ int	ft_printf(const char *type, ...)
 			pln = ft_putchar(pln, tmptype[i++]);
 		if (tmptype[i++] != '\0')
 		{
-			if (ft_isflag(tmptype[i], &tmptype[i + 1]) == 2)
+			if (ft_isflag(tmptype[i], &tmptype[i + 1]) >= 2)
 			{
+				flagid = ft_isflag(tmptype[i], &tmptype[i + 1]);
 				j = ft_countspaces(pln, &tmptype[i + 1]);
 				i += ft_nbrlen(j - pln) + 1;
 				pln = j;
@@ -189,8 +196,8 @@ int	main(int argc, char **argv)
 	// ft_printf(type, 'b', 033, pi);
 	// free(type);
 
-	printf("%-5d", 4213);
-	ft_printf("%-5d", 4234);
+	printf("%05d", 4213);
+	ft_printf("%0d", 4234);
 
 	write(0, "\n", 2);
 	return (argc);
