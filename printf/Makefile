@@ -6,12 +6,13 @@
 #    By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 11:43:18 by jtollena          #+#    #+#              #
-#    Updated: 2023/11/21 16:15:55 by jtollena         ###   ########.fr        #
+#    Updated: 2023/11/22 12:43:39 by jtollena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = srcs/main.c \
 		srcs/helper.c \
+		srcs/putter.c
 
 # BONUS_SRCS = 
 

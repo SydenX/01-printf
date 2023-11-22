@@ -6,76 +6,30 @@
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:51:36 by jtollena          #+#    #+#             */
-/*   Updated: 2023/11/21 17:54:47 by jtollena         ###   ########.fr       */
+/*   Updated: 2023/11/22 12:44:16 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+#include <stdio.h>
 
-int	ft_putnbr(int current, int n, char flag)
-{
-	long	l;
-	int		len;
-
-	if (current == -1)
-		return (-1);
-	len = current;
-	l = (long) n;
-	if (l < 0)
-	{
-		l *= -1;
-		len = ft_putchar(len, '-');
-	} else if (flag == '+' || flag == ' ')
-		len = ft_putchar(len, flag);
-	if (l >= 10)
-	{
-		len = ft_putnbr(len, l / 10, 0);
-		l %= 10;
-	}
-	len = ft_putchar(len, l + '0');
-	return (len);
-}
-
-int	ft_putunbr(int current, unsigned int n)
-{
-	unsigned long	l;
-	int				len;
-
-	if (current == -1)
-		return (-1);
-	len = current;
-	l = (unsigned long) n;
-	if (l < 0)
-	{
-		l *= -1;
-		len = ft_putchar(len, '-');
-	}
-	if (l >= 10)
-	{
-		len = ft_putunbr(len, l / 10);
-		l %= 10;
-	}
-	len = ft_putchar(len, l + '0');
-	return (len);
-}
-
-int	ft_formats(char *tmptype, int pln, int i, va_list args, char flag)
+int	ft_formats(char tmptype, int pln, va_list args, char flag)
 {
 	if (pln == -1)
 		return (-1);
-	if (tmptype[i] == 'c')
+	if (tmptype == 'c')
 		pln = ft_putchar(pln, va_arg(args, int));
-	else if (tmptype[i] == 'd' || tmptype[i] == 'i')
+	else if (tmptype == 'd' || tmptype == 'i')
 		pln = ft_putnbr(pln, va_arg(args, int), flag);
-	else if (tmptype[i] == 'u')
+	else if (tmptype == 'u')
 		pln = ft_putunbr(pln, va_arg(args, unsigned int));
-	else if (tmptype[i] == 's')
+	else if (tmptype == 's')
 		pln = ft_putstr(pln, va_arg(args, char *));
-	else if (tmptype[i] == 'x')
+	else if (tmptype == 'x')
 		pln = ft_putnbr_base(pln, (size_t)va_arg(args, unsigned int), 0, flag);
-	else if (tmptype[i] == 'X')
+	else if (tmptype == 'X')
 		pln = ft_putnbr_base(pln, (size_t)va_arg(args, unsigned int), 1, flag);
-	else if (tmptype[i] == 'p')
+	else if (tmptype == 'p')
 	{
 		pln = ft_putstr(pln, "0x");
 		pln = ft_putnbr_base(pln, va_arg(args, size_t), 0, 0);
@@ -83,63 +37,17 @@ int	ft_formats(char *tmptype, int pln, int i, va_list args, char flag)
 	return (pln);
 }
 
-int	ft_sendspaces(int current, int i)
-{	
-	if (current == -1)
-		return (-1);
-	while (i-- > 0)
-		current = ft_putchar(current, ' ');
-	return (current);
-}
-
-int	ft_countspaces(int current, char *nexts)
-{
-	int	i;
-
-	if (current == -1)
-		return (-1);
-	i = ft_atoi(nexts);
-	return (i);
-}
-
 int	ft_isflag(char c, char *nexts)
 {
-	int	i;
-
 	if (c == '+' && (nexts[0] == 'd' || nexts[0] == 'i'))
 		return (1);
 	if (c == '#' && (nexts[0] == 'x' || nexts[0] == 'X'))
 		return (1);
 	if (c == ' ' && (nexts[0] == 'd' || nexts[0] == 'i'))
 		return (1);
-	if (c == '-' && (nexts[0] >= '0' && nexts[0] <= '9'))
-		return (2);
-	else if (c == '-')
-		return (1);
-	if (c == '0' && (nexts[0] >= '0' && nexts[0] <= '9'))
-		return (3);
-	else if (c == '0')
-		return (1);
 	return (0);
 }
 
-int	ft_nbrlen(int n)
-{
-	int	ln;
-
-	ln = 1;
-	if (n < 0)
-		ln++;
-	while (n / 10 != 0)
-	{
-		ln++;
-		n /= 10;
-	}
-	return (ln);
-}
-
-
-#include <stdio.h>
 int	ft_printf(const char *type, ...)
 {
 	va_list	args;
@@ -147,58 +55,40 @@ int	ft_printf(const char *type, ...)
 	int		i;
 	long	pln;
 	char	flag;
-	int		j;
-	int		flagid;
 
-	flagid = 0;
 	pln = 0;
 	tmptype = (char *)type;
 	va_start(args, type);
 	i = 0;
-	j = 0;
-	while (tmptype[i] != '\0')
+	while (tmptype[i] != 0)
 	{
-		while (tmptype[i] != '%' && tmptype[i] != '\0')
+		while (tmptype[i] != '%' && tmptype[i] != 0)
 			pln = ft_putchar(pln, tmptype[i++]);
-		if (tmptype[i++] != '\0')
-		{
-			if (ft_isflag(tmptype[i], &tmptype[i + 1]) >= 2)
-			{
-				flagid = ft_isflag(tmptype[i], &tmptype[i + 1]);
-				j = ft_countspaces(pln, &tmptype[i + 1]);
-				i += ft_nbrlen(j - pln) + 1;
-				pln = j;
-			}
-			if (ft_isflag(tmptype[i], &tmptype[i + 1]) >= 1)
-				flag = tmptype[i++];
-			if (tmptype[i] == '%')
-				pln = ft_putchar(pln, tmptype[i++]);
-			pln = ft_formats(tmptype, pln, i, args, flag);
-			i++;
-		}
+		if (tmptype[i++] == 0)
+			break ;
+		if (ft_isflag(tmptype[i], &tmptype[i + 1]) >= 1)
+			flag = tmptype[i++];
+		if (tmptype[i] == '%')
+			pln = ft_putchar(pln, '%');
+		pln = ft_formats(tmptype[i++], pln, args, flag);
+		flag = 0;
 	}
-	if (j > 0)
-		pln = ft_sendspaces(pln, j - (pln - j));
 	va_end(args);
 	return (pln);
 }
 
 //Pour compiler durant les tests;
-//  gcc main.c helper.c -L. -lft
-#include <stdio.h>
-int	main(int argc, char **argv)
-{
-	// char *s = "salut";
-	// int  i = 10;
-	// void  *pi;
-	// char *type = ft_substr(argv[1], 0, ft_strlen(argv[1]));
-	// printf(ft_strjoin("->", type), 'b', 033, pi);
-	// ft_printf(type, 'b', 033, pi);
-	// free(type);
+//  gcc -Wall -Wextra -Werror main.c helper.c
+// #include <stdio.h>
+// int	main(void)
+// {
+// 	char	*p = NULL;
+// 	printf("$%c %s %p % d %+i %u %#x %X %% $", 'c', "a", p, 
+	//2147483647, 2147483647, 456464, 42, 42);
+// 	ft_printf(">%c %s %p % d %+i %u %#x %X %% <", 'c', "a", p, 
+	//2147483647, 2147483647, 456464, 42, 42);
+// 	// ft_printf(">%i ", 42);
 
-	printf("%05d", 4213);
-	ft_printf("%0d", 4234);
-
-	write(0, "\n", 2);
-	return (argc);
-}
+// 	write(1, "\n", 2);
+// 	return (0);
+// }
