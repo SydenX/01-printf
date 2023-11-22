@@ -6,11 +6,11 @@
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:40:42 by jtollena          #+#    #+#             */
-/*   Updated: 2023/11/22 12:42:07 by jtollena         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:00:02 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_putchar(int current, char c)
 {

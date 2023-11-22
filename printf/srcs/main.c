@@ -6,12 +6,11 @@
 /*   By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:51:36 by jtollena          #+#    #+#             */
-/*   Updated: 2023/11/22 12:44:16 by jtollena         ###   ########.fr       */
+/*   Updated: 2023/11/22 12:59:54 by jtollena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
 int	ft_formats(char tmptype, int pln, va_list args, char flag)
 {
@@ -83,10 +82,10 @@ int	ft_printf(const char *type, ...)
 // int	main(void)
 // {
 // 	char	*p = NULL;
-// 	printf("$%c %s %p % d %+i %u %#x %X %% $", 'c', "a", p, 
-	//2147483647, 2147483647, 456464, 42, 42);
-// 	ft_printf(">%c %s %p % d %+i %u %#x %X %% <", 'c', "a", p, 
-	//2147483647, 2147483647, 456464, 42, 42);
+// 	printf("$%c % s %p % d %+i %u %#x %X %% $", 'c', "a", p, 
+// 	2147483647, 2147483647, 456464, 42, 42);
+// 	ft_printf(">%c % s %p % d %+i %u %#x %X %% <", 'c', "a", p, 
+// 	2147483647, 2147483647, 456464, 42, 42);
 // 	// ft_printf(">%i ", 42);
 
 // 	write(1, "\n", 2);
