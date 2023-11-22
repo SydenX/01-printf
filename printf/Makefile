@@ -6,7 +6,7 @@
 #    By: jtollena <jtollena@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 11:43:18 by jtollena          #+#    #+#              #
-#    Updated: 2023/11/22 12:52:48 by jtollena         ###   ########.fr        #
+#    Updated: 2023/11/22 13:04:09 by jtollena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,9 @@ SRCS = srcs/main.c \
 		srcs/helper.c \
 		srcs/putter.c
 
-# BONUS_SRCS = 
-
 NAME = libftprintf.a
 OBJS = $(SRCS:.c=.o)
 INCLUDES = includes/ft_printf.h
-# BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 FLAGS = -Wall -Wextra -Werror
 
 .c.o:
